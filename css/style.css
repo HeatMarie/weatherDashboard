@@ -1,0 +1,38 @@
+.mainHeader {
+    text-align: center;
+    background-image: linear-gradient(to right, #3232fd, #1212a2, #01014b );
+    margin-top: 0px;
+    height: 100px;
+    font-size: 40px;
+    padding-top: 40px;
+}
+
+
+#searchSection {
+    float: left;
+    width: 25%;
+    height: 100%;
+    border-right: 2px solid black;
+    padding-top: 30px;
+    
+}
+
+#searchButton {
+    margin-bottom: 10px;
+    margin-left: 20px;
+    width: 77%;
+}
+
+#searchHeading {
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+#weatherSearch {
+    margin-left:20px;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 77%;
+}

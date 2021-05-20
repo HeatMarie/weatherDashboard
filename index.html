@@ -4,31 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>weatherDashboard</title>
 </head>
 <body>
-    <header>
-        <h1>Weather Dashboard</h1>
+    <header class="mainHeader">
+        <h1 >Weather Dashboard</h1>
+        
     </header>
-    <aside>
+    <aside id="searchSection">
         <div>
-            <form>
-                <label for="weather-search"><h1>Search For a City:</h1></label>
-                <input type="search" id="weatherSearch">
+            <form id="weatherForm">
+                <label for="weather-search"><h1 id="searchHeading">Search For a City:</h1></label>
+                <input type="search" id="weatherSearch" placeholder="Search for a city">
                 <br>
-                <button id="searchButton">Search</button>
+                <button type="submit" value="submit" id="searchButton">Search</button>
             </form>
         </div>
+
         <hr>
         <div class="recentContainer">
-            
+
         </div>
     </aside>
-    <div class="mainContainer">
-
+    <div id="mainContainer">
+        <h3 id="temp">Temp:</h3>
     </div>
     <div class="fiveDayContainer">
 
     </div>
+
+    <script src="script/config.js"></script>
+    <script src="script/script.js"></script>
+    
 </body>
 </html>
