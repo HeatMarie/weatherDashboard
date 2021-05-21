@@ -9,7 +9,7 @@
     <title>weatherDashboard</title>
 </head>
 <body>
-    <header class="mainHeader">
+    <header id="mainHeader">
         <h1 >Weather Dashboard</h1>
         
     </header>
@@ -21,17 +21,47 @@
                 <br>
                 <button type="submit" value="submit" id="searchButton">Search</button>
             </form>
+
+            <hr>
+
         </div>
 
-        <hr>
-        <div class="recentContainer">
+        <div id="recentContainer">
+           
 
         </div>
     </aside>
+
     <div id="mainContainer">
-        <h3 id="temp">Temp:</h3>
+        
+        <div id="cityName"><h1>Search by city name</h1></div>
+
+       
+            <div>
+                <h3 class="weatherTag current">Temp:<span id="temp" class="dynamicInput"></span></h3>
+            </div>
+            <div class="">
+                <h3 class="weatherTag current">Wind:<span id="wind" class="dynamicInput"></span></h3>
+            </div>
+        
+
+        
+            <div>
+                <h3 class="weatherTag current">Humidity:<span id="humidity" class="dynamicInput"></span></h3>
+            </div>
+            <div>
+                <h3 class="weatherTag current">uvIndex:<span id="uvIndex" class="dynamicInput"></span></h3>
+            </div>
+        
     </div>
-    <div class="fiveDayContainer">
+
+    <div id="fiveDayContainer">
+
+        <div id="day1"></div>
+        <div id="day2"></div>
+        <div id="day3"></div>
+        <div id="day4"></div>
+        <div id="day5"></div>
 
     </div>
 
