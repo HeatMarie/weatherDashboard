@@ -26,7 +26,7 @@ function getWeatherByCityName(cityName) {
     .then(response => response.json())
     .then(data => {
         saveToLocalStorage(data)
-        console.log("data", data)
+        // console.log("data", data)
         displaystuff(data);
         // latAndLong(data);
         getFiveDayWeather(data)
@@ -90,18 +90,27 @@ function getFiveDayWeather(cityCoord) {
     .then(response => response.json())
     .then(data => {
         humidityAndUVIndexDisplay(data)
-        console.log("daily", data.daily[0].feels_like.day)
+        console.log("daily", data.daily)
+        for(let i = 0; i < 5; i++){
+            console.log("index", data.daily[i].temp.day)
+        }
+     
     })
     .catch(err => console.log("Lat and Lon needed!", err))
 }
 
-
+const dailyWeather = [];
+console.log((dailyWeather[0]))
 /* TODO: Make loop to get daily states: 
     - loop for date 
     - Loop for Temp 
     - Loop for wind
     - Loop for Humidity
 */
+
+function dailyCall(dailyweather) {
+   
+}
 
 
 // TODO: GET DATA FROM LOCAL STORAGE CREATE BUTTONS TO HAVE IT RESEARCH
