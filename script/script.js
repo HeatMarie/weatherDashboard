@@ -8,6 +8,28 @@ const uvIndex = document.getElementById('uvIndex')
 // let weatherSearch = document.getElementById('weatherSearch')
 const weatherForm = document.getElementById('weatherForm')
 const currentDay = document.getElementById('currentDay')
+
+
+const day1Date = document.getElementById('day1Date');
+const day2Date = document.getElementById('day2Date');
+const day3Date = document.getElementById('day3Date');
+const day4Date = document.getElementById('day4Date');
+const day5Date = document.getElementById('day5Date');
+
+const day1Temp = document.getElementById('day1Temp');
+const day2Temp = document.getElementById('day2Temp');
+const day3Temp = document.getElementById('day3Temp');
+const day4Temp = document.getElementById('day4Temp');
+const day5Temp = document.getElementById('day5Temp');
+
+const day1Wind = document.getElementById('day1Wind')
+const day2Wind = document.getElementById('day2Wind')
+const day3Wind = document.getElementById('day3Wind')
+const day4Wind = document.getElementById('day4Wind')
+const day5Wind = document.getElementById('day5Wind')
+
+
+
 const DateTime = luxon.DateTime;
 const Duration = luxon.Duration;
 let dt = DateTime.now().toLocaleString(DateTime.DATE_SHORT);
@@ -82,6 +104,35 @@ function humidityAndUVIndexDisplay(cityWeather){
     uvIndex.appendChild(currentUvIndex);
 }
 
+function dailyTemp(dailyTemp) {
+    const cityDay1Temp = document.createElement('span');
+    day1Temp.innerHTML = " " + dailyTemp.daily[0].temp.day + "\u00B0f";
+    day1Temp.appendChild(cityDay1Temp)
+   
+    const cityDay2Temp = document.createElement('span');
+    day2Temp.innerHTML = " " + dailyTemp.daily[1].temp.day + "\u00B0f";
+    day2Temp.appendChild(cityDay2Temp)
+
+    const cityDay3Temp = document.createElement('span');
+    day3Temp.innerHTML = " " + dailyTemp.daily[2].temp.day + "\u00B0f";
+    day3Temp.appendChild(cityDay3Temp)
+
+    const cityDay4Temp = document.createElement('span');
+    day4Temp.innerHTML = " " + dailyTemp.daily[3].temp.day + "\u00B0f";
+    day4Temp.appendChild(cityDay4Temp)
+
+    const cityDay5Temp = document.createElement('span');
+    day5Temp.innerHTML = " " + dailyTemp.daily[4].temp.day + "\u00B0f";
+    day5Temp.appendChild(cityDay5Temp)
+
+}
+
+function dailyWind(dailyWind) {
+    const cityDay1Wind = document.createElement('span');
+    day1Wind.innerHTML = " " + dailyWind.daily[0].wind_speed + "MPH";
+    day1Wind.appendChild(cityDay1Wind)
+
+}
 
 function getFiveDayWeather(cityCoord) {
     const cityLon = cityCoord.coord.lon;
@@ -89,18 +140,14 @@ function getFiveDayWeather(cityCoord) {
     fetch(`${CONFIG.onecallEndpoint}?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${CONFIG.owmKey}`)
     .then(response => response.json())
     .then(data => {
+        console.log("data", data)
         humidityAndUVIndexDisplay(data)
-        console.log("daily", data.daily)
-        for(let i = 0; i < 5; i++){
-            console.log("index", data.daily[i].temp.day)
-        }
-     
+        dailyTemp(data);  
+        dailyWind(data)   
     })
     .catch(err => console.log("Lat and Lon needed!", err))
 }
 
-const dailyWeather = [];
-console.log((dailyWeather[0]))
 /* TODO: Make loop to get daily states: 
     - loop for date 
     - Loop for Temp 
@@ -108,9 +155,7 @@ console.log((dailyWeather[0]))
     - Loop for Humidity
 */
 
-function dailyCall(dailyweather) {
-   
-}
+
 
 
 // TODO: GET DATA FROM LOCAL STORAGE CREATE BUTTONS TO HAVE IT RESEARCH

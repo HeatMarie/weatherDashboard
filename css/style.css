@@ -46,7 +46,8 @@
     border: 3px solid black;
     float:right;
     width: 72%;
-    margin-top: 10px;
+    margin: 10px 20px 20px 10px;
+   
 }
 .dynamicInput {
     font-weight: normal;
@@ -54,7 +55,8 @@
 }
 
 .weatherTag {
-    margin-left:24px
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 #cityName {
@@ -70,4 +72,30 @@ float-left {
 
 float-right {
     float:right;
+}
+
+#fiveDayContainer {
+    display:flex;
+    margin: 10px 20px 20px 10px;
+    border: 2px solid black;
+    margin-top: 10px;
+    width: 72%;
+    float:right;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
+
+.dailyWeather {
+    display: inline-flex;
+    margin: 20px 20px;
+    width:15%;
+    height: 200px;
+    border: 1px solid black;
+    display:inline-block;
+    flex-wrap: wrap;
+   
+}
+
+.dailyWeather h3, .dailyWeather h2 {
+    margin: 20px 20px 20px 10px;
 }
