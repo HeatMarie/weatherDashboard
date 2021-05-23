@@ -84,8 +84,17 @@ function handleSearch(e){
 
 function saveToLocalStorage(){
     storage.setItem("savedCity", JSON.stringify(savedCity));
-
     
+}
+
+function cityHistory(cityWeather) {
+    const storage = window.localStorage;
+    const cityHistory = JSON.parse(storage.getItem('cityWeather'));
+    const newCity = [];
+    console.log("cityHistory", cityHistory)
+    newCity.push(cityHistory)
+    console.log("newCity", newCity)
+
 }
 
 // Creates the buttons for the Recent Search
@@ -285,7 +294,7 @@ function setIcon(data) {
 function getLocalStorage() {
    
     let savedCityStorage = storage.getItem("savedCity");
-    if(savedCityStorage !== "undefined"){
+    if(savedCityStorage !== "undefined" && savedCityStorage !== null){
         savedCityStorage = JSON.parse(savedCityStorage);
         for(i=0; i < savedCityStorage.length; i++) {
             createButton(savedCityStorage[i])
