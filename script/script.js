@@ -27,13 +27,17 @@ const day2Wind = document.getElementById('day2Wind')
 const day3Wind = document.getElementById('day3Wind')
 const day4Wind = document.getElementById('day4Wind')
 const day5Wind = document.getElementById('day5Wind')
-
+const recentSearch = document.getElementById('recentContainer');
 
 
 const DateTime = luxon.DateTime;
 const Duration = luxon.Duration;
 let dt = DateTime.now().toLocaleString(DateTime.DATE_SHORT);
+let savedCity = [];
+const storage = window.localStorage;
 
+
+getLocalStorage();
 
 
 
@@ -66,20 +70,24 @@ let dt = DateTime.now().toLocaleString(DateTime.DATE_SHORT);
 
 
 function getWeatherByCityName(cityName) {
-    if(savedCity.indexOf(cityName) < 0){
-        createButton(cityName);
-    }
+
+  
     fetch(`${CONFIG.omwEndpoint}?q=${cityName}&units=imperial&appid=${CONFIG.owmKey}`)
     .then(response => response.json())
     .then(data => {
-        
-        saveToLocalStorage(data)
+     
         // console.log("data", data)
         displaystuff(data);
         // latAndLong(data);
         getFiveDayWeather(data)
         cityHistory(data.name)
-
+       
+        if(savedCity && savedCity.indexOf(cityName) < 0){
+            createButton(cityName);
+            savedCity.push(cityName);
+            saveToLocalStorage();
+        }
+        
     })
     
     .catch(err => console.log("wrong city name!", err))
@@ -97,12 +105,12 @@ function handleSearch(e){
   
 }
 
-const recentSearch = document.getElementById('recentContainer');
-const savedCity =[];
 
-function saveToLocalStorage(cityWeather){
-    const storage = window.localStorage;
-    storage.setItem('cityWeather', JSON.stringify(cityWeather))
+
+
+function saveToLocalStorage(){
+    storage.setItem("savedCity", JSON.stringify(savedCity));
+
     
 }
 
@@ -128,7 +136,6 @@ function createButton(searchInput) {
         e.preventDefault();
         getWeatherByCityName(searchInput);
     })
-    savedCity.push(searchInput);
 
 }
 
@@ -281,9 +288,19 @@ function getFiveDayWeather(cityCoord) {
         dailyWind(data);
         dailyHumidity(data);  
         setIcon(data);
-        
+        setDates(data);
     })
     .catch(err => console.log("Lat and Lon needed!", err))
+}
+
+function setDates(data) {
+    let day1DateT = new Date(data.daily[0].dt * 1000);
+    let day1Date = day1DateT.getDay() + "/" + day1DateT.getMonth() + "/" + day1DateT.getYear() 
+    document.getElementById("day1Date").innerHTML = DateTime.fromSeconds(data.daily[0].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day2Date").innerHTML = DateTime.fromSeconds(data.daily[1].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day3Date").innerHTML = DateTime.fromSeconds(data.daily[2].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day4Date").innerHTML = DateTime.fromSeconds(data.daily[3].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day5Date").innerHTML = DateTime.fromSeconds(data.daily[4].dt).toFormat('MM/dd/yyyy');
 }
 
 function setIcon(data) {
@@ -296,6 +313,18 @@ function setIcon(data) {
     document.getElementById('weatherIcon4').src=path + data.daily[3].weather[0].icon + ".png";
     document.getElementById('weatherIcon5').src=path + data.daily[4].weather[0].icon + ".png";
     
+}
+
+function getLocalStorage() {
+   
+    let savedCityStorage = storage.getItem("savedCity");
+    if(savedCityStorage !== "undefined"){
+        savedCityStorage = JSON.parse(savedCityStorage);
+        for(i=0; i < savedCityStorage.length; i++) {
+            createButton(savedCityStorage[i])
+        }   
+        savedCity = savedCityStorage;
+    }
 }
 
 // TODO: GET DATA FROM LOCAL STORAGE CREATE BUTTONS TO HAVE IT RESEARCH
