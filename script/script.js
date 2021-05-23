@@ -4,8 +4,6 @@ const temp = document.getElementById('temp');
 const wind = document.getElementById('wind');
 const humidity = document.getElementById('humidity');
 const uvIndex = document.getElementById('uvIndex')
-// const searchButton = document.getElementById('searchButton');
-// let weatherSearch = document.getElementById('weatherSearch')
 const weatherForm = document.getElementById('weatherForm')
 const currentDay = document.getElementById('currentDay')
 
@@ -37,37 +35,12 @@ let savedCity = [];
 const storage = window.localStorage;
 
 
+// Gets local Storage and sets the Recent Searach
+
 getLocalStorage();
 
 
-
-// function getWeatherByCityId(cityId) {
-//     fetch(`${CONFIG.omwEndpoint}?id=${cityId}&appid=${CONFIG.owmKey}`)
-//     .then(response => response.json())
-//     .then(data => console.log("data", data))
-
-//     .catch(err => console.log("wrong city name!", err))
-// }
-
-// function getIcon(weatherData) {
-//     const iconArray = [];
-//     let tag1 = document.getElementById('weatherIcon');
-//     tag1.src="http://openweathermap.org/img/wn/10d@2x.png";
-//     // for(let i = 0; i < 5; i++){
-//     //     const getIcon = weatherData.daily[i].weather[0].icon;
-//     //     iconArray.push(getIcon)
-//     // }
-//     // iconArray.forEach(iconArray => {
-       
-//     // })
-//     console.log("iconArray", iconArray)
-//     console.log(weatherData.daily[0].weather[0].icon)
-    
-
-// }
-
-
-
+// Fetches the city by Name, This is also used to import the coords into the other fetch 
 
 function getWeatherByCityName(cityName) {
 
@@ -93,6 +66,7 @@ function getWeatherByCityName(cityName) {
     .catch(err => console.log("wrong city name!", err))
 }
 
+// handles the the search inserting search input to give the getWeatherByCityName the name of the city to fetch
 
 function handleSearch(e){
     e.preventDefault();
@@ -106,7 +80,7 @@ function handleSearch(e){
 }
 
 
-
+// Saves City's to local Storage to be fetched later
 
 function saveToLocalStorage(){
     storage.setItem("savedCity", JSON.stringify(savedCity));
@@ -114,22 +88,15 @@ function saveToLocalStorage(){
     
 }
 
-function cityHistory(cityWeather) {
-    const storage = window.localStorage;
-    const cityHistory = JSON.parse(storage.getItem('cityWeather'));
-    const newCity = [];
-    console.log("cityHistory", cityHistory)
-    newCity.push(cityHistory)
-    console.log("newCity", newCity)
-    
-}
+// Creates the buttons for the Recent Search
 
 function createButton(searchInput) {
     const createButton = document.createElement("button");
     createButton.setAttribute("type", "submit");
     createButton.setAttribute("value", "submit");
-    createButton.style.width = "100px";
+    createButton.style.width = "150px";
     createButton.style.height = "50px";
+    createButton.style.margin = "7px 0px 7px 7px"
     createButton.innerHTML = searchInput
     recentSearch.appendChild(createButton);
     createButton.addEventListener('click', function(e){
