@@ -271,7 +271,6 @@ function getFiveDayWeather(cityCoord) {
 
 function setDates(data) {
     let day1DateT = new Date(data.daily[0].dt * 1000);
-    let day1Date = day1DateT.getDay() + "/" + day1DateT.getMonth() + "/" + day1DateT.getYear() 
     document.getElementById("day1Date").innerHTML = DateTime.fromSeconds(data.daily[0].dt).toFormat('MM/dd/yyyy');
     document.getElementById("day2Date").innerHTML = DateTime.fromSeconds(data.daily[1].dt).toFormat('MM/dd/yyyy');
     document.getElementById("day3Date").innerHTML = DateTime.fromSeconds(data.daily[2].dt).toFormat('MM/dd/yyyy');
@@ -288,7 +287,7 @@ function setIcon(data) {
     document.getElementById('weatherIcon3').src=path + data.daily[2].weather[0].icon + ".png";
     document.getElementById('weatherIcon4').src=path + data.daily[3].weather[0].icon + ".png";
     document.getElementById('weatherIcon5').src=path + data.daily[4].weather[0].icon + ".png";
-    
+    document.getElementById('currentIcon').src=path + data.current.weather[0].icon + ".png";
 }
 
 function getLocalStorage() {
