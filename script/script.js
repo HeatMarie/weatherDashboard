@@ -35,6 +35,8 @@ const Duration = luxon.Duration;
 let dt = DateTime.now().toLocaleString(DateTime.DATE_SHORT);
 
 
+
+
 // function getWeatherByCityId(cityId) {
 //     fetch(`${CONFIG.omwEndpoint}?id=${cityId}&appid=${CONFIG.owmKey}`)
 //     .then(response => response.json())
@@ -43,15 +45,41 @@ let dt = DateTime.now().toLocaleString(DateTime.DATE_SHORT);
 //     .catch(err => console.log("wrong city name!", err))
 // }
 
+// function getIcon(weatherData) {
+//     const iconArray = [];
+//     let tag1 = document.getElementById('weatherIcon');
+//     tag1.src="http://openweathermap.org/img/wn/10d@2x.png";
+//     // for(let i = 0; i < 5; i++){
+//     //     const getIcon = weatherData.daily[i].weather[0].icon;
+//     //     iconArray.push(getIcon)
+//     // }
+//     // iconArray.forEach(iconArray => {
+       
+//     // })
+//     console.log("iconArray", iconArray)
+//     console.log(weatherData.daily[0].weather[0].icon)
+    
+
+// }
+
+
+
+
 function getWeatherByCityName(cityName) {
+    if(savedCity.indexOf(cityName) < 0){
+        createButton(cityName);
+    }
     fetch(`${CONFIG.omwEndpoint}?q=${cityName}&units=imperial&appid=${CONFIG.owmKey}`)
     .then(response => response.json())
     .then(data => {
+        
         saveToLocalStorage(data)
         // console.log("data", data)
         displaystuff(data);
         // latAndLong(data);
         getFiveDayWeather(data)
+        cityHistory(data.name)
+
     })
     
     .catch(err => console.log("wrong city name!", err))
@@ -63,10 +91,14 @@ function handleSearch(e){
     const searchInput = e.target[0].value
     console.log("searchInput", searchInput)
     getWeatherByCityName(searchInput);
+   
     // getWeatherByCityId('4887398');
     // console.log("event", e)
   
 }
+
+const recentSearch = document.getElementById('recentContainer');
+const savedCity =[];
 
 function saveToLocalStorage(cityWeather){
     const storage = window.localStorage;
@@ -74,6 +106,31 @@ function saveToLocalStorage(cityWeather){
     
 }
 
+function cityHistory(cityWeather) {
+    const storage = window.localStorage;
+    const cityHistory = JSON.parse(storage.getItem('cityWeather'));
+    const newCity = [];
+    console.log("cityHistory", cityHistory)
+    newCity.push(cityHistory)
+    console.log("newCity", newCity)
+    
+}
+
+function createButton(searchInput) {
+    const createButton = document.createElement("button");
+    createButton.setAttribute("type", "submit");
+    createButton.setAttribute("value", "submit");
+    createButton.style.width = "100px";
+    createButton.style.height = "50px";
+    createButton.innerHTML = searchInput
+    recentSearch.appendChild(createButton);
+    createButton.addEventListener('click', function(e){
+        e.preventDefault();
+        getWeatherByCityName(searchInput);
+    })
+    savedCity.push(searchInput);
+
+}
 
 function displaystuff(cityWeather){
     cityName.innerHTML =  '';
@@ -85,24 +142,64 @@ function displaystuff(cityWeather){
     currentDay.innerHTML = dt;
 
     const currentTemp = document.createElement('span')
-    temp.innerHTML = " " + cityWeather.main.temp;
+    temp.innerHTML = " " + cityWeather.main.temp + '\u00B0f';
     temp.appendChild(currentTemp);
 
     const currentWind = document.createElement('span')
-    wind.innerHTML = " " + cityWeather.wind.speed;
+    wind.innerHTML = " " + cityWeather.wind.speed + "MPH";
     wind.appendChild(currentWind);
 
 }
 
 function humidityAndUVIndexDisplay(cityWeather){
     const currentHumidity = document.createElement('span')
-    humidity.innerHTML = " " + cityWeather.current.humidity;
+    humidity.innerHTML = " " + cityWeather.current.humidity + "%";
     humidity.appendChild(currentHumidity);
 
     const currentUvIndex = document.createElement('span')
     uvIndex.innerHTML = " " + cityWeather.current.uvi;
     uvIndex.appendChild(currentUvIndex);
+
+    if(cityWeather.current.uvi <= "2"){
+        uvIndex.style.backgroundColor = "green";
+    } else if(cityWeather.current.uvi >= "3" && cityWeather.current.uvi <= "5") {
+        uvIndex.style.backgroundColor = "yellow";
+    } else {
+        uvIndex.style.backgroundColor = "red";
+    }
 }
+
+
+
+
+   
+
+
+
+    
+   // Keep working on this one 
+   
+   
+// function weatherIcons(cityWeather) {
+//         for(i = 0; i < 5; i++){
+           
+//         if (cityWeather.daily[i].clouds > "90") {
+//             const weatherCloudEl = document.getElementsByClassName('fa-cloud')
+//             let cloudArray = []
+//            cloudArray.push(weatherCloudEl)
+//            console.log("cloudArray", cloudArray)
+           
+//            cloudArray.forEach((cloudArray) => {
+//                    for(let i = 0; i < cloudArray.length; i++){
+//                        cloudArray[i].style.display = "block"
+//                    }   
+//                })
+//             console.log("clouds", cityWeather.daily[i].clouds)
+           
+//         }
+//     }
+// }
+
 
 function dailyTemp(dailyTemp) {
     const cityDay1Temp = document.createElement('span');
@@ -132,6 +229,44 @@ function dailyWind(dailyWind) {
     day1Wind.innerHTML = " " + dailyWind.daily[0].wind_speed + "MPH";
     day1Wind.appendChild(cityDay1Wind)
 
+    const cityDay2Wind = document.createElement('span');
+    day2Wind.innerHTML = " " + dailyWind.daily[1].wind_speed + "MPH";
+    day2Wind.appendChild(cityDay2Wind)
+
+    const cityDay3Wind = document.createElement('span');
+    day3Wind.innerHTML = " " + dailyWind.daily[2].wind_speed + "MPH";
+    day3Wind.appendChild(cityDay3Wind)
+
+    const cityDay4Wind = document.createElement('span');
+    day4Wind.innerHTML = " " + dailyWind.daily[3].wind_speed + "MPH";
+    day4Wind.appendChild(cityDay4Wind)
+
+    const cityDay5Wind = document.createElement('span');
+    day5Wind.innerHTML = " " + dailyWind.daily[4].wind_speed + "MPH";
+    day5Wind.appendChild(cityDay5Wind)
+
+}
+
+function dailyHumidity(dailyHumidity) {
+    const cityDay1Humidity = document.createElement('span');
+    day1Humidity.innerHTML = " " + dailyHumidity.daily[0].humidity + "%";
+    day1Humidity.appendChild(cityDay1Humidity);
+
+    const cityDay2Humidity = document.createElement('span');
+    day2Humidity.innerHTML = " " + dailyHumidity.daily[1].humidity + "%";
+    day2Humidity.appendChild(cityDay2Humidity);
+
+    const cityDay3Humidity = document.createElement('span');
+    day3Humidity.innerHTML = " " + dailyHumidity.daily[2].humidity + "%";
+    day3Humidity.appendChild(cityDay3Humidity);
+
+    const cityDay4Humidity = document.createElement('span');
+    day4Humidity.innerHTML = " " + dailyHumidity.daily[3].humidity + "%";
+    day4Humidity.appendChild(cityDay4Humidity);
+
+    const cityDay5Humidity = document.createElement('span');
+    day5Humidity.innerHTML = " " + dailyHumidity.daily[4].humidity + "%";
+    day5Humidity.appendChild(cityDay5Humidity);
 }
 
 function getFiveDayWeather(cityCoord) {
@@ -140,27 +275,32 @@ function getFiveDayWeather(cityCoord) {
     fetch(`${CONFIG.onecallEndpoint}?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${CONFIG.owmKey}`)
     .then(response => response.json())
     .then(data => {
-        console.log("data", data)
-        humidityAndUVIndexDisplay(data)
+        console.log("data", data);
+        humidityAndUVIndexDisplay(data);
         dailyTemp(data);  
-        dailyWind(data)   
+        dailyWind(data);
+        dailyHumidity(data);  
+        setIcon(data);
+        
     })
     .catch(err => console.log("Lat and Lon needed!", err))
 }
 
-/* TODO: Make loop to get daily states: 
-    - loop for date 
-    - Loop for Temp 
-    - Loop for wind
-    - Loop for Humidity
-*/
+function setIcon(data) {
 
+    let path =  "http://openweathermap.org/img/wn/";
 
-
+    document.getElementById('weatherIcon1').src=path + data.daily[0].weather[0].icon + ".png";
+    document.getElementById('weatherIcon2').src=path + data.daily[1].weather[0].icon + ".png";
+    document.getElementById('weatherIcon3').src=path + data.daily[2].weather[0].icon + ".png";
+    document.getElementById('weatherIcon4').src=path + data.daily[3].weather[0].icon + ".png";
+    document.getElementById('weatherIcon5').src=path + data.daily[4].weather[0].icon + ".png";
+    
+}
 
 // TODO: GET DATA FROM LOCAL STORAGE CREATE BUTTONS TO HAVE IT RESEARCH
 
-//TODO: GET ICONS FROM FONTAWESOME
+
 
 //MAKE FUNCTION FOR UV INDEX 
 

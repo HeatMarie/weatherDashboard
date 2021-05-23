@@ -87,9 +87,9 @@ float-right {
 
 .dailyWeather {
     display: inline-flex;
-    margin: 20px 20px;
-    width:15%;
-    height: 200px;
+    margin: 20px 15px;
+    width:17%;
+    height: 225px;
     border: 1px solid black;
     display:inline-block;
     flex-wrap: wrap;
@@ -98,4 +98,13 @@ float-right {
 
 .dailyWeather h3, .dailyWeather h2 {
     margin: 20px 20px 20px 10px;
+}
+
+#cloud2 {
+    display:none
+}
+
+.weatherIcon {
+    height: 50px;
+    width: 50px;
 }
