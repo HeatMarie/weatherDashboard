@@ -26,7 +26,7 @@ Because we all need to see how wrong the weather man is going to be.
     
     https://heatmarie.github.io/weatherDashboard/?
 
-   <img src="./img/Capture.JPG">
+   <img src="./images/Capture.JPG">
 
 ## Comments
 
