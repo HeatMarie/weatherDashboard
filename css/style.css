@@ -1,10 +1,16 @@
 #mainHeader {
     text-align: center;
-    background-image: linear-gradient(to right, #3232fd, #1212a2, #01014b );
+    background-image: linear-gradient(to right, #3232fd, #1717c2, #01014b );
     margin-top: 0px;
     height: 100px;
     font-size: 40px;
     padding-top: 40px;
+}
+
+#mainHeader h1 {
+    font-weight: bolder;
+    font-size: 1.2em;
+    letter-spacing: 1.5px;
 }
 
 
@@ -94,7 +100,7 @@
     border: 1px solid black;
     display:inline-block;
     flex-wrap: wrap;
-    background-image: linear-gradient(to right, #3232fd, #1212a2, #01014b );
+    background-image: linear-gradient(to left, #4c4cf7, #3636e9, #0909be );
    
 }
 
