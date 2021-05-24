@@ -23,8 +23,8 @@ Because we all need to see how wrong the weather man is going to be.
 
 
 ## Link to the Website
-    
-    https://heatmarie.github.io/weatherDashboard/?
+
+https://heatmarie.github.io/weatherDashboard/
 
    <img src="./images/Capture.JPG">
 
