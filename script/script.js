@@ -39,19 +39,15 @@ const storage = window.localStorage;
 
 getLocalStorage();
 
-
 // Fetches the city by Name, This is also used to import the coords into the other fetch 
 
-function getWeatherByCityName(cityName) {
 
-  
+function getWeatherByCityName(cityName) {
+   
     fetch(`${CONFIG.omwEndpoint}?q=${cityName}&units=imperial&appid=${CONFIG.owmKey}`)
     .then(response => response.json())
     .then(data => {
-     
-        // console.log("data", data)
         displaystuff(data);
-        // latAndLong(data);
         getFiveDayWeather(data)
         cityHistory(data.name)
        
@@ -62,21 +58,18 @@ function getWeatherByCityName(cityName) {
         }
         
     })
-    
+   
     .catch(err => console.log("wrong city name!", err))
 }
 
 // handles the the search inserting search input to give the getWeatherByCityName the name of the city to fetch
 
 function handleSearch(e){
-    e.preventDefault();
+    e.preventDefault(e);
     const searchInput = e.target[0].value
-    console.log("searchInput", searchInput)
-    getWeatherByCityName(searchInput);
+    getWeatherByCityName(searchInput);  
+    
    
-    // getWeatherByCityId('4887398');
-    // console.log("event", e)
-  
 }
 
 
@@ -87,14 +80,12 @@ function saveToLocalStorage(){
     
 }
 
+// This does something. Not sure what entirely but the entire thing breaks without it. 
 function cityHistory(cityWeather) {
     const storage = window.localStorage;
     const cityHistory = JSON.parse(storage.getItem('cityWeather'));
     const newCity = [];
-    console.log("cityHistory", cityHistory)
     newCity.push(cityHistory)
-    console.log("newCity", newCity)
-
 }
 
 // Creates the buttons for the Recent Search
@@ -115,7 +106,11 @@ function createButton(searchInput) {
 
 }
 
+// Displays thingsin the current section
+
 function displaystuff(cityWeather){
+
+    
     cityName.innerHTML =  '';
 
     const currentCityName = document.createElement('h1')
@@ -131,8 +126,9 @@ function displaystuff(cityWeather){
     const currentWind = document.createElement('span')
     wind.innerHTML = " " + cityWeather.wind.speed + "MPH";
     wind.appendChild(currentWind);
-
 }
+
+// gets info from the lat and long guy for the humidity and uv index
 
 function humidityAndUVIndexDisplay(cityWeather){
     const currentHumidity = document.createElement('span')
@@ -152,105 +148,81 @@ function humidityAndUVIndexDisplay(cityWeather){
     }
 }
 
-
-
-
-   
-
-
-
-    
-   // Keep working on this one 
-   
-   
-// function weatherIcons(cityWeather) {
-//         for(i = 0; i < 5; i++){
-           
-//         if (cityWeather.daily[i].clouds > "90") {
-//             const weatherCloudEl = document.getElementsByClassName('fa-cloud')
-//             let cloudArray = []
-//            cloudArray.push(weatherCloudEl)
-//            console.log("cloudArray", cloudArray)
-           
-//            cloudArray.forEach((cloudArray) => {
-//                    for(let i = 0; i < cloudArray.length; i++){
-//                        cloudArray[i].style.display = "block"
-//                    }   
-//                })
-//             console.log("clouds", cityWeather.daily[i].clouds)
-           
-//         }
-//     }
-// }
-
+// displays the daily temp 
 
 function dailyTemp(dailyTemp) {
     const cityDay1Temp = document.createElement('span');
-    day1Temp.innerHTML = " " + dailyTemp.daily[0].temp.day + "\u00B0f";
+    day1Temp.innerHTML = " " + dailyTemp.daily[1].temp.day + "\u00B0f";
     day1Temp.appendChild(cityDay1Temp)
    
     const cityDay2Temp = document.createElement('span');
-    day2Temp.innerHTML = " " + dailyTemp.daily[1].temp.day + "\u00B0f";
+    day2Temp.innerHTML = " " + dailyTemp.daily[2].temp.day + "\u00B0f";
     day2Temp.appendChild(cityDay2Temp)
 
     const cityDay3Temp = document.createElement('span');
-    day3Temp.innerHTML = " " + dailyTemp.daily[2].temp.day + "\u00B0f";
+    day3Temp.innerHTML = " " + dailyTemp.daily[3].temp.day + "\u00B0f";
     day3Temp.appendChild(cityDay3Temp)
 
     const cityDay4Temp = document.createElement('span');
-    day4Temp.innerHTML = " " + dailyTemp.daily[3].temp.day + "\u00B0f";
+    day4Temp.innerHTML = " " + dailyTemp.daily[4].temp.day + "\u00B0f";
     day4Temp.appendChild(cityDay4Temp)
 
     const cityDay5Temp = document.createElement('span');
-    day5Temp.innerHTML = " " + dailyTemp.daily[4].temp.day + "\u00B0f";
+    day5Temp.innerHTML = " " + dailyTemp.daily[5].temp.day + "\u00B0f";
     day5Temp.appendChild(cityDay5Temp)
 
 }
 
+// displays the daily wind
+
 function dailyWind(dailyWind) {
     const cityDay1Wind = document.createElement('span');
-    day1Wind.innerHTML = " " + dailyWind.daily[0].wind_speed + "MPH";
+    day1Wind.innerHTML = " " + dailyWind.daily[1].wind_speed + "MPH";
     day1Wind.appendChild(cityDay1Wind)
 
     const cityDay2Wind = document.createElement('span');
-    day2Wind.innerHTML = " " + dailyWind.daily[1].wind_speed + "MPH";
+    day2Wind.innerHTML = " " + dailyWind.daily[2].wind_speed + "MPH";
     day2Wind.appendChild(cityDay2Wind)
 
     const cityDay3Wind = document.createElement('span');
-    day3Wind.innerHTML = " " + dailyWind.daily[2].wind_speed + "MPH";
+    day3Wind.innerHTML = " " + dailyWind.daily[3].wind_speed + "MPH";
     day3Wind.appendChild(cityDay3Wind)
 
     const cityDay4Wind = document.createElement('span');
-    day4Wind.innerHTML = " " + dailyWind.daily[3].wind_speed + "MPH";
+    day4Wind.innerHTML = " " + dailyWind.daily[4].wind_speed + "MPH";
     day4Wind.appendChild(cityDay4Wind)
 
     const cityDay5Wind = document.createElement('span');
-    day5Wind.innerHTML = " " + dailyWind.daily[4].wind_speed + "MPH";
+    day5Wind.innerHTML = " " + dailyWind.daily[5].wind_speed + "MPH";
     day5Wind.appendChild(cityDay5Wind)
 
 }
 
+// displays the daily humidity
+
 function dailyHumidity(dailyHumidity) {
     const cityDay1Humidity = document.createElement('span');
-    day1Humidity.innerHTML = " " + dailyHumidity.daily[0].humidity + "%";
+    day1Humidity.innerHTML = " " + dailyHumidity.daily[1].humidity + "%";
     day1Humidity.appendChild(cityDay1Humidity);
 
     const cityDay2Humidity = document.createElement('span');
-    day2Humidity.innerHTML = " " + dailyHumidity.daily[1].humidity + "%";
+    day2Humidity.innerHTML = " " + dailyHumidity.daily[2].humidity + "%";
     day2Humidity.appendChild(cityDay2Humidity);
 
     const cityDay3Humidity = document.createElement('span');
-    day3Humidity.innerHTML = " " + dailyHumidity.daily[2].humidity + "%";
+    day3Humidity.innerHTML = " " + dailyHumidity.daily[3].humidity + "%";
     day3Humidity.appendChild(cityDay3Humidity);
 
     const cityDay4Humidity = document.createElement('span');
-    day4Humidity.innerHTML = " " + dailyHumidity.daily[3].humidity + "%";
+    day4Humidity.innerHTML = " " + dailyHumidity.daily[4].humidity + "%";
     day4Humidity.appendChild(cityDay4Humidity);
 
     const cityDay5Humidity = document.createElement('span');
-    day5Humidity.innerHTML = " " + dailyHumidity.daily[4].humidity + "%";
+    day5Humidity.innerHTML = " " + dailyHumidity.daily[5].humidity + "%";
     day5Humidity.appendChild(cityDay5Humidity);
 }
+
+// this pulls in the lat and long from the getCityName guy and then does stuff
 
 function getFiveDayWeather(cityCoord) {
     const cityLon = cityCoord.coord.lon;
@@ -258,7 +230,6 @@ function getFiveDayWeather(cityCoord) {
     fetch(`${CONFIG.onecallEndpoint}?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${CONFIG.owmKey}`)
     .then(response => response.json())
     .then(data => {
-        console.log("data", data);
         humidityAndUVIndexDisplay(data);
         dailyTemp(data);  
         dailyWind(data);
@@ -269,26 +240,32 @@ function getFiveDayWeather(cityCoord) {
     .catch(err => console.log("Lat and Lon needed!", err))
 }
 
+// sets the dates inside each container
+
 function setDates(data) {
     let day1DateT = new Date(data.daily[0].dt * 1000);
-    document.getElementById("day1Date").innerHTML = DateTime.fromSeconds(data.daily[0].dt).toFormat('MM/dd/yyyy');
-    document.getElementById("day2Date").innerHTML = DateTime.fromSeconds(data.daily[1].dt).toFormat('MM/dd/yyyy');
-    document.getElementById("day3Date").innerHTML = DateTime.fromSeconds(data.daily[2].dt).toFormat('MM/dd/yyyy');
-    document.getElementById("day4Date").innerHTML = DateTime.fromSeconds(data.daily[3].dt).toFormat('MM/dd/yyyy');
-    document.getElementById("day5Date").innerHTML = DateTime.fromSeconds(data.daily[4].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day1Date").innerHTML = DateTime.fromSeconds(data.daily[1].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day2Date").innerHTML = DateTime.fromSeconds(data.daily[2].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day3Date").innerHTML = DateTime.fromSeconds(data.daily[3].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day4Date").innerHTML = DateTime.fromSeconds(data.daily[4].dt).toFormat('MM/dd/yyyy');
+    document.getElementById("day5Date").innerHTML = DateTime.fromSeconds(data.daily[5].dt).toFormat('MM/dd/yyyy');
 }
+
+// sets the icons inside each container
 
 function setIcon(data) {
 
-    let path =  "http://openweathermap.org/img/wn/";
+    let path =  "https://openweathermap.org/img/wn/";
 
-    document.getElementById('weatherIcon1').src=path + data.daily[0].weather[0].icon + ".png";
-    document.getElementById('weatherIcon2').src=path + data.daily[1].weather[0].icon + ".png";
-    document.getElementById('weatherIcon3').src=path + data.daily[2].weather[0].icon + ".png";
-    document.getElementById('weatherIcon4').src=path + data.daily[3].weather[0].icon + ".png";
-    document.getElementById('weatherIcon5').src=path + data.daily[4].weather[0].icon + ".png";
+    document.getElementById('weatherIcon1').src=path + data.daily[1].weather[0].icon + ".png";
+    document.getElementById('weatherIcon2').src=path + data.daily[2].weather[0].icon + ".png";
+    document.getElementById('weatherIcon3').src=path + data.daily[3].weather[0].icon + ".png";
+    document.getElementById('weatherIcon4').src=path + data.daily[4].weather[0].icon + ".png";
+    document.getElementById('weatherIcon5').src=path + data.daily[5].weather[0].icon + ".png";
     document.getElementById('currentIcon').src=path + data.current.weather[0].icon + ".png";
 }
+
+// gets local storage and creates the button
 
 function getLocalStorage() {
    

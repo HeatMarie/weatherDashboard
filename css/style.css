@@ -26,20 +26,18 @@
     margin-left: 10px;
     padding-left: 10px;
     font-size: 25px;
-    margin-bottom: 10px;
 }
 
 #weatherSearch {
     margin-left:20px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 42px;
     width: 77%;
 }
 
-.current {
-    display: inline-block;
-    margin-top: 10px;
-    
+#recentContainer h3 {
+    text-align: center;
 }
 
 #mainContainer {
@@ -49,6 +47,24 @@
     margin: 10px 20px 20px 10px;
    
 }
+
+.current {
+    display: inline-block;
+    margin-top: 10px;
+    
+}
+
+#cityName {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+#currentDay {
+    text-align: center;
+}
+
 .dynamicInput {
     font-weight: normal;
     margin-left:10px;
@@ -59,24 +75,9 @@
     margin-bottom: 10px;
 }
 
-#cityName {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 25px;
-    margin-bottom: 50px;
-}
-
-float-left {
-    float:left;
-}
-
-float-right {
-    float:right;
-}
-
 #fiveDayContainer {
     display:flex;
-    margin: 10px 20px 20px 10px;
+    margin: 10px 20px 100px 10px;
     border: 2px solid black;
     margin-top: 10px;
     width: 72%;
@@ -89,10 +90,11 @@ float-right {
     display: inline-flex;
     margin: 20px 15px;
     width:17%;
-    height: 225px;
+    height: fit-content;
     border: 1px solid black;
     display:inline-block;
     flex-wrap: wrap;
+    background-image: linear-gradient(to right, #3232fd, #1212a2, #01014b );
    
 }
 
@@ -100,11 +102,64 @@ float-right {
     margin: 20px 20px 20px 10px;
 }
 
-#cloud2 {
-    display:none
-}
-
 .weatherIcon {
     height: 50px;
     width: 50px;
+}
+
+@media screen and (max-width: 720px) {
+
+#mainHeader {
+    font-size: 28px;
+}
+
+#searchSection {
+    float:none;
+    text-align: center;
+    width:100%;
+}
+
+#weatherForm{
+    float:none;
+    text-align: center;
+}
+
+#searchHeading {
+    font-size: 20px;
+}
+
+#weatherSearch {
+    margin-top: 10px;
+    width:40%;
+    height: 35px;
+}
+
+#searchButton {
+    width:20%;
+}
+
+#recentContainer {
+    display:none;
+}
+
+#mainContainer {
+    border: none;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+
+#cityName {
+    font-size:24px;
+}
+
+#fiveDayContainer {
+    display:flex;
+    flex-direction: column;
+    border: none;
+}
+
+.dailyWeather {
+    width:70%;
+}
+
 }
