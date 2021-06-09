@@ -38,7 +38,7 @@ Using both the OWM API and Luxon to get the currect date, was a fun experience. 
 
 Through this assignment I realized that arrays are not the pure evil sent to destroy my life like I believed earlier. It took us time to get along, and we still fight constantly, but we have developed a type of love hate relationship that will continue for years to come. 
 
-The future of this app, will come with a cleaner IU, descriptions, and weather alerts. I mean, why not implement all the API has to offer.
+The future of this app, will come with a cleaner IU, weather descriptions, and weather alerts. I mean, why not implement all the API has to offer.
 
 ## Technologies Used
 - JavaScript
