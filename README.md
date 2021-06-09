@@ -42,6 +42,9 @@ The future of this app, will come with a cleaner IU, descriptions, and weather a
 
 ## Technologies Used
 - JavaScript
+- Luxon
+- HTML5
+- CSS 
 
 ## Contact Information 
 
