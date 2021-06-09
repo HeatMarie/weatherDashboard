@@ -41,7 +41,7 @@ Through this assignment I realized that arrays are not the pure evil sent to des
 The future of this app, will come with a cleaner IU, descriptions, and weather alerts. I mean, why not implement all the API has to offer.
 
 ## Technologies Used
--JavaScript
+- JavaScript
 
 ## Contact Information 
 
