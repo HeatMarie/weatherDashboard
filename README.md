@@ -40,6 +40,15 @@ Through this assignment I realized that arrays are not the pure evil sent to des
 
 The future of this app, will come with a cleaner IU, descriptions, and weather alerts. I mean, why not implement all the API has to offer.
 
+## Technologies Used
+-JavaScript
+
+## Contact Information 
+
+Heather Bjoin 
+
+h.m.bjoin@gmail.com
+
 ![GitHub followers](https://img.shields.io/github/followers/HeatMarie?color=%20%20%23c0640fb4&logo=Github&logoColor=%20%20%23c0640fb4&style=for-the-badge)
 
 ![GitHub User's stars](https://img.shields.io/github/stars/HeatMarie?color=%20%20%23c0640fb4&logo=github&logoColor=%20%20%23c0640fb4&style=for-the-badge)
