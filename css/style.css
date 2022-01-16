@@ -1,3 +1,10 @@
+body {
+    background-image: linear-gradient(to right, #3232fd, #1717c2, #01014b );
+}
+
+.modalSearch {
+    display: none;
+}
 #mainHeader {
     text-align: center;
     background-image: linear-gradient(to right, #3232fd, #1717c2, #01014b );
@@ -22,11 +29,11 @@
     
 }
 
-#searchButton {
+/* #searchButton {
     margin-bottom: 10px;
     margin-left: 20px;
     width: 77%;
-}
+} */
 
 #searchHeading {
     margin-left: 10px;
@@ -34,13 +41,13 @@
     font-size: 25px;
 }
 
-#weatherSearch {
+/* #weatherSearch {
     margin-left:20px;
     text-align: center;
     margin-bottom: 15px;
     margin-top: 42px;
     width: 77%;
-}
+} */
 
 #recentContainer h3 {
     text-align: center;
@@ -108,12 +115,48 @@
     margin: 20px 20px 20px 10px;
 }
 
+.dailyDate {
+    font-weight:bolder;
+    font-size:1.3em;
+}
+
 .weatherIcon {
     height: 50px;
     width: 50px;
 }
 
+.buttonClass {
+    width: 90%;
+    height: 50px;
+}
+
+.recentContainer {
+    margin-left: 5%;
+    margin-top: 5%;
+    z-index: 200;
+}
+
 @media screen and (max-width: 720px) {
+
+.dropdown{
+    display:flex;
+    margin-top: 20px;
+    position: static !important;
+    width: 100% !important;
+    justify-content: center;
+}
+
+.dropdown-menu {
+    transform: translate3d(6%, 190px, 0px) !important;
+}
+
+.buttonClass {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+
+}
 
 #mainHeader {
     font-size: 28px;
@@ -123,6 +166,7 @@
     float:none;
     text-align: center;
     width:100%;
+    height: 100%;
 }
 
 #weatherForm{
@@ -134,18 +178,19 @@
     font-size: 20px;
 }
 
-#weatherSearch {
+/* #weatherSearch {
     margin-top: 10px;
     width:40%;
     height: 35px;
-}
+} */
 
-#searchButton {
+/* #searchButton {
     width:20%;
-}
+} */
 
-#recentContainer {
-    display:none;
+.recentContainer {
+    width: 90%;
+    height: 100%;
 }
 
 #mainContainer {

@@ -25,7 +25,7 @@ const day2Wind = document.getElementById('day2Wind')
 const day3Wind = document.getElementById('day3Wind')
 const day4Wind = document.getElementById('day4Wind')
 const day5Wind = document.getElementById('day5Wind')
-const recentSearch = document.getElementById('recentContainer');
+const recentSearch = document.querySelector('.recentContainer');
 
 
 const DateTime = luxon.DateTime;
@@ -94,9 +94,7 @@ function createButton(searchInput) {
     const createButton = document.createElement("button");
     createButton.setAttribute("type", "submit");
     createButton.setAttribute("value", "submit");
-    createButton.style.width = "150px";
-    createButton.style.height = "50px";
-    createButton.style.margin = "7px 0px 7px 7px"
+    createButton.classList.add("buttonClass")
     createButton.innerHTML = searchInput
     recentSearch.appendChild(createButton);
     createButton.addEventListener('click', function(e){
@@ -139,6 +137,7 @@ function humidityAndUVIndexDisplay(cityWeather){
     uvIndex.innerHTML = " " + cityWeather.current.uvi;
     uvIndex.appendChild(currentUvIndex);
 
+
     if(cityWeather.current.uvi <= "2"){
         uvIndex.style.backgroundColor = "green";
     } else if(cityWeather.current.uvi >= "3" && cityWeather.current.uvi <= "5") {
@@ -149,6 +148,8 @@ function humidityAndUVIndexDisplay(cityWeather){
 }
 
 // displays the daily temp 
+
+
 
 function dailyTemp(dailyTemp) {
     const cityDay1Temp = document.createElement('span');
@@ -172,6 +173,8 @@ function dailyTemp(dailyTemp) {
     day5Temp.appendChild(cityDay5Temp)
 
 }
+
+
 
 // displays the daily wind
 
@@ -243,6 +246,7 @@ function getFiveDayWeather(cityCoord) {
 // sets the dates inside each container
 
 function setDates(data) {
+    
     let day1DateT = new Date(data.daily[0].dt * 1000);
     document.getElementById("day1Date").innerHTML = DateTime.fromSeconds(data.daily[1].dt).toFormat('MM/dd/yyyy');
     document.getElementById("day2Date").innerHTML = DateTime.fromSeconds(data.daily[2].dt).toFormat('MM/dd/yyyy');
@@ -289,3 +293,5 @@ function getLocalStorage() {
 /* ========== Event Listener ========== */
 
 weatherForm.addEventListener('submit', handleSearch);
+
+
