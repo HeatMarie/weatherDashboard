@@ -1,4 +1,5 @@
 const mainContainer = document.getElementById('mainContainer')
+const getFiveDayContainer = document.getElementById('fiveDayContainer')
 const cityName = document.getElementById('cityName');
 const temp = document.getElementById('temp');
 const wind = document.getElementById('wind');
@@ -50,7 +51,7 @@ function getWeatherByCityName(cityName) {
         displaystuff(data);
         getFiveDayWeather(data)
         cityHistory(data.name)
-       
+       console.log(data);
         if(savedCity && savedCity.indexOf(cityName) < 0){
             createButton(cityName);
             savedCity.push(cityName);
@@ -107,8 +108,8 @@ function createButton(searchInput) {
 // Displays thingsin the current section
 
 function displaystuff(cityWeather){
-
-    
+    mainContainer.style.display = "flex";
+    getFiveDayContainer.style.display ="flex";
     cityName.innerHTML =  '';
 
     const currentCityName = document.createElement('h1')
@@ -233,6 +234,7 @@ function getFiveDayWeather(cityCoord) {
     fetch(`${CONFIG.onecallEndpoint}?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${CONFIG.owmKey}`)
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         humidityAndUVIndexDisplay(data);
         dailyTemp(data);  
         dailyWind(data);
@@ -258,7 +260,7 @@ function setDates(data) {
 // sets the icons inside each container
 
 function setIcon(data) {
-
+    
     let path =  "https://openweathermap.org/img/wn/";
 
     document.getElementById('weatherIcon1').src=path + data.daily[1].weather[0].icon + ".png";

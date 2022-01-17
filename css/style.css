@@ -1,10 +1,11 @@
-body {
+ body {
     background-image: linear-gradient(to right, #3232fd, #1717c2, #01014b );
 }
 
 .modalSearch {
     display: none;
 }
+
 #mainHeader {
     text-align: center;
     background-image: linear-gradient(to right, #3232fd, #1717c2, #01014b );
@@ -29,36 +30,26 @@ body {
     
 }
 
-/* #searchButton {
-    margin-bottom: 10px;
-    margin-left: 20px;
-    width: 77%;
-} */
 
-#searchHeading {
-    margin-left: 10px;
-    padding-left: 10px;
-    font-size: 25px;
-}
-
-/* #weatherSearch {
-    margin-left:20px;
-    text-align: center;
-    margin-bottom: 15px;
-    margin-top: 42px;
-    width: 77%;
-} */
-
-#recentContainer h3 {
-    text-align: center;
+#mainContainer,
+#fiveDayContainer {
+    display: none;
+    border: 3px solid white;
+    background-color: white;
+    color: black;
+    float:right;
+    width: 62%;
+    margin: 10px 156px 20px 0px;
+    border-radius: 5px;
+    box-shadow:  0 7px 30px -10px rgba(150,170,180,0.5);
 }
 
 #mainContainer {
-    border: 3px solid black;
-    float:right;
-    width: 72%;
-    margin: 10px 20px 20px 10px;
-   
+    margin-top: 60px;
+    flex-direction: column;
+}
+#fiveDayContainer {
+    flex-direction: row;
 }
 
 .current {
@@ -88,17 +79,6 @@ body {
     margin-bottom: 10px;
 }
 
-#fiveDayContainer {
-    display:flex;
-    margin: 10px 20px 100px 10px;
-    border: 2px solid black;
-    margin-top: 10px;
-    width: 72%;
-    float:right;
-    flex-wrap:wrap;
-    justify-content: space-around;
-}
-
 .dailyWeather {
     display: inline-flex;
     margin: 20px 15px;
@@ -107,7 +87,7 @@ body {
     border: 1px solid black;
     display:inline-block;
     flex-wrap: wrap;
-    background-image: linear-gradient(to left, #4c4cf7, #3636e9, #0909be );
+    background-color: lightblue;
    
 }
 
@@ -128,13 +108,31 @@ body {
 .buttonClass {
     width: 90%;
     height: 50px;
+    margin-top: 10px;
+    border-style: none none solid none;
+    background-color: lightblue;
+    border-width: 1px;
+    text-transform: capitalize;
 }
 
 .recentContainer {
-    margin-left: 5%;
-    margin-top: 5%;
+    /* margin-left: 5%; */
     z-index: 200;
 }
+
+.dropdown {
+    text-align: center;
+    margin-top: 20px !important;
+    
+}
+
+.dropdown-menu {
+    text-align: center !important;
+    margin-top: 5px !important;
+    background-color: lightblue;
+    
+}
+
 
 @media screen and (max-width: 720px) {
 
@@ -142,21 +140,32 @@ body {
     display:flex;
     margin-top: 20px;
     position: static !important;
-    width: 100% !important;
     justify-content: center;
+    font-size: 32px;
+}
+
+.dropdown .show {
+    display:flex;
+    align-items: center;
 }
 
 .dropdown-menu {
-    transform: translate3d(6%, 190px, 0px) !important;
-}
+    transform: translate3d(5%, 190px, 0px) !important;
+    background-color: white;
+    font-size: 28px;
+    flex-direction: column;
+    align-items: center;
+} 
 
 .buttonClass {
     display: flex;
-    width: 90%;
+    width: 68%;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    margin-top: 10px;
 
-}
+} 
 
 #mainHeader {
     font-size: 28px;
@@ -177,16 +186,6 @@ body {
 #searchHeading {
     font-size: 20px;
 }
-
-/* #weatherSearch {
-    margin-top: 10px;
-    width:40%;
-    height: 35px;
-} */
-
-/* #searchButton {
-    width:20%;
-} */
 
 .recentContainer {
     width: 90%;
@@ -213,4 +212,4 @@ body {
     width:70%;
 }
 
-}
+} 
