@@ -30,6 +30,20 @@
     
 }
 
+#currentIcon {
+    width: 104px;
+    height: 112px;
+    background-color: lightblue;
+    border-radius: 38%;
+}
+
+#currentDayContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 4%;
+}
 
 #mainContainer,
 #fiveDayContainer {
